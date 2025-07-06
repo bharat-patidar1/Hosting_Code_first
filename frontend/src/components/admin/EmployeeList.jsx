@@ -12,7 +12,6 @@ import { toast } from "sonner";
 import axios from "axios";
 import { useGetAllEmployees } from "../hooks/useGetAllEmployees";
 import { fetchAllEmployees } from "@/api/fetchAllEmployee";
-// import AddEmployeeModal from "./AddEmployeeModal";
 // import EditEmployeeModal from "./EditEmployeeModal"; // optional
 
 export default function EmployeeList() {
@@ -57,11 +56,11 @@ export default function EmployeeList() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Department</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Actions</TableHead>
+                  <TableHead className="text-center">Name</TableHead>
+                  <TableHead className="text-center">Email</TableHead>
+                  <TableHead className="text-center">Department</TableHead>
+                  <TableHead className="text-center">Status</TableHead>
+                  <TableHead className="text-center">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -74,7 +73,7 @@ export default function EmployeeList() {
                       {emp.name}
                     </TableCell>
                     <TableCell>{emp.email}</TableCell>
-                    <TableCell>{emp.department}</TableCell>
+                    <TableCell >{emp.department}</TableCell>
                     <TableCell>{emp.status}</TableCell>
                     <TableCell className="space-x-2">
                       {/* <Button variant="outline" onClick={() => setEditEmployee(emp)}>Edit</Button> */}
@@ -91,7 +90,10 @@ export default function EmployeeList() {
       </Card>
 
       {/* Add Employee Modal */}
-      {showAddModal && <AddEmployeeModal onClose={() => setShowAddModal(false)} onSuccess={() => fetchAllEmployees()} />}
+      {showAddModal && <AddEmployeeModal onClose={() => setShowAddModal(false)} onSuccess={() => {
+        setShowAddModal(false)
+        return fetchAllEmployees()
+      }} />}
 
       {/* Edit Employee Modal (optional) */}
       {/* {editEmployee && (

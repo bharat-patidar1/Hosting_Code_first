@@ -26,7 +26,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="cursor-pointer border-[4px] border-transparent hover:border-[4px] hover:border-[rgba(135,134,234,0.61)]">
+          <Card onClick={()=>navigate('/admin/dashboard/attendanceSummary')} className="cursor-pointer border-[4px] border-transparent hover:border-[4px] hover:border-[rgba(135,134,234,0.61)]">
             <CardHeader>
               <CardTitle>Attendance Summary</CardTitle>
             </CardHeader>
@@ -35,16 +35,16 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="cursor-pointer border-[4px] border-transparent hover:border-[4px] hover:border-[rgba(135,134,234,0.61)]">
+          <Card onClick={()=>navigate('/admin/dashboard/employeeLeaves')} className="cursor-pointer border-[4px] border-transparent hover:border-[4px] hover:border-[rgba(135,134,234,0.61)]">
             <CardHeader>
-              <CardTitle>Activity Logs</CardTitle>
+              <CardTitle>Leave Management Panel</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>Review daily activity submissions from employees.</p>
+              <p>View and Manage All Leave Requests Submitted by Employees</p>
             </CardContent>
           </Card>
 
-          <Card className="cursor-pointer border-[4px] border-transparent hover:border-[4px] hover:border-[rgba(135,134,234,0.61)]">
+          <Card onClick={()=>navigate('/admin/dashboard/workhour')} className="cursor-pointer border-[4px] border-transparent hover:border-[4px] hover:border-[rgba(135,134,234,0.61)]">
             <CardHeader>
               <CardTitle>Work Hour Tracker</CardTitle>
             </CardHeader>

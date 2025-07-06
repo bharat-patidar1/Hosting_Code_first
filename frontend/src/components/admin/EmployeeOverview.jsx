@@ -4,116 +4,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const dummyEmployees = [
-  {
-    id: 1,
-    name: "Ayesha Sharma",
-    email: "ayesha@email.com",
-    department: "Tech",
-    status: "active",
-    todayHours: 3.5,
-    weekHours: 15,
-    lastLogin: "1 hr ago",
-  },
-  {
-    id: 2,
-    name: "Rahul Mehra",
-    email: "rahul@email.com",
-    department: "Sales",
-    status: "inactive",
-    todayHours: 0,
-    weekHours: 5,
-    lastLogin: "3 days ago",
-  },{
-    id: 3,
-    name: "Nikita Verma",
-    email: "nikita@email.com",
-    department: "HR",
-    status: "active",
-    todayHours: 2,
-    weekHours: 12,
-    lastLogin: "30 mins ago",
-  },
-  {
-    id: 4,
-    name: "Kunal Singh",
-    email: "kunal@email.com",
-    department: "Tech",
-    status: "active",
-    todayHours: 4,
-    weekHours: 20,
-    lastLogin: "10 mins ago",
-  },
-  {
-    id: 5,
-    name: "Meera Iyer",
-    email: "meera@email.com",
-    department: "Marketing",
-    status: "inactive",
-    todayHours: 0,
-    weekHours: 0,
-    lastLogin: "7 days ago",
-  },
-  {
-    id: 6,
-    name: "Arjun Das",
-    email: "arjun@email.com",
-    department: "Finance",
-    status: "active",
-    todayHours: 5,
-    weekHours: 25,
-    lastLogin: "2 hrs ago",
-  },
-  {
-    id: 7,
-    name: "Sara Ali",
-    email: "sara@email.com",
-    department: "Tech",
-    status: "inactive",
-    todayHours: 0,
-    weekHours: 3,
-    lastLogin: "5 days ago",
-  },
-  {
-    id: 8,
-    name: "Vikram Rathore",
-    email: "vikram@email.com",
-    department: "HR",
-    status: "active",
-    todayHours: 2.5,
-    weekHours: 10,
-    lastLogin: "1 hr ago",
-  },
-  {
-    id: 9,
-    name: "Tina Kapoor",
-    email: "tina@email.com",
-    department: "Sales",
-    status: "active",
-    todayHours: 3,
-    weekHours: 18,
-    lastLogin: "just now",
-  },
-  {
-    id: 10,
-    name: "Mohit Jain",
-    email: "mohit@email.com",
-    department: "Finance",
-    status: "inactive",
-    todayHours: 0,
-    weekHours: 1,
-    lastLogin: "4 days ago",
-  }
-];
+
 
 export default function EmployeeOverview() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
-
-  const filteredEmployees = dummyEmployees.filter((emp) => {
+  const { allEmployees } = useSelector(store=>store.employee)
+  const filteredEmployees = allEmployees.filter((emp) => {
     return (
       (emp.name.toLowerCase().includes(search.toLowerCase()) ||
         emp.email.toLowerCase().includes(search.toLowerCase())) &&

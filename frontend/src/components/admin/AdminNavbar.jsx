@@ -30,8 +30,8 @@ export default function AdminNavbar() {
     }
 
   return (
-    <nav className="w-full flex items-center justify-between px-6 py-4 bg-white shadow-md border-b">
-      <img className="h-15 w-35" src={code1stimg} alt="" />
+    <nav className="w-full flex items-center justify-between px-6 py-4 bg-white shadow-sm border-b">
+      <img className="h-10 w-25" src={code1stimg} alt="" />
       <span className="flex"> <h1  className="text-3xl font-bold text-center text-black">Code 1st Dashboard</h1><p className="flex flex-col justify-end h-9 ml-3 ">ft. Rohit Patidar</p></span>
       {
         loading ? (<Button className="cursor-pointer" variant="destructive" onClick={logoutHandler}>

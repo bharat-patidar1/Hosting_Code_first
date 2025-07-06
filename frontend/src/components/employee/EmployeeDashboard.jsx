@@ -5,47 +5,32 @@ import { Button } from "@/components/ui/button";
 import { Attendance_API_END_POINT, Employee_API_END_POINT } from "@/utils/constant";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsClockedin } from "@/redux/attendanceSlice";
+import { setTotalHours } from "@/redux/employeeSlice";
+axios.defaults.withCredentials = true; //this line is important 
 
 export default function EmployeeDashboard() {
-  const [isClockedIn, setIsClockedIn] = useState(false);
-  const [totalHours, setTotalHours] = useState(0);
+  const {totalHours} = useSelector(store=>store.employee)
   const [loading, setLoading] = useState(false);
+  const {isClockedIn} = useSelector(store=>store.attendance)
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  // Fetch today's attendance on mount
-  const fetchTodayStatus = async () => {
-    try {
-      const res = await axios.get("/api/v1/attendance/today",{
-        withCredentials : true
-      });
-      if (res.data.success) {
-        const today = res.data.attendance;
-        const lastSession = today?.sessions?.at(-1);
-        setIsClockedIn(lastSession && !lastSession.clockOut);
-        setTotalHours(today.totalHoursToday || 0);
-      }
-    } catch (err) {
-      console.error("Failed to fetch today's attendance", err);
-    }
-  };
-
-  useEffect(() => {
-    fetchTodayStatus();
-  }, []);
-
-  // Clock In Handler
+  
   const handleClockIn = async () => {
     setLoading(true);
     try {
-      await axios.post(`http://localhost:8000/api/v1/attendance/clockIn`,{
+      const res = await axios.post(`${Attendance_API_END_POINT}/clockIn`,{
         withCredentials: true, // ✅ this is crucial to send the token cookie
       });
       if (res.data.success) {
-        toast.success("Clocked in successfully!");
-        setIsClockedIn(true);
+        toast.success(res.data.message);
+        dispatch(setIsClockedin(true))
       }
     } catch (err) {
       console.log(err)
       toast.error("Clock In failed");
+      dispatch(setIsClockedin(false));
     } finally {
       setLoading(false);
     }
@@ -55,15 +40,15 @@ export default function EmployeeDashboard() {
   const handleClockOut = async () => {
     setLoading(true);
     try {
-      console.log("Success")
-      //   const res = await axios.post("/api/v1/attendance/clock-out");
-      //   if (res.data.success) {
-      //     toast.success("Clocked out successfully!");
-      //     setIsClockedIn(false);
-      //     setTotalHours(prev => prev + res.data.sessionDuration); // optional
-      //   }
+        const res = await axios.post(`${Attendance_API_END_POINT}/clockOut` , {withCredentials : true});
+        if (res.data.success) {
+          toast.success(res.data.message);
+          dispatch(setIsClockedin(false))
+          dispatch(setTotalHours(res.data.attendance.totalHoursToday))
+        }
     } catch (err) {
       toast.error("Clock Out failed");
+      dispatch(setIsClockedin(true))
     } finally {
       setLoading(false);
     }
@@ -71,7 +56,7 @@ export default function EmployeeDashboard() {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.get(`${Employee_API_END_POINT}/logout`)
+      const res = await axios.get(`${Employee_API_END_POINT}/logout`,{withCredentials : true})
       if (res.data.success) {
         navigate('/login')
         toast.success(res.data.message);
@@ -88,15 +73,15 @@ export default function EmployeeDashboard() {
       <header className="bg-white shadow-md p-4 flex justify-between items-center">
         <h1 className="text-xl font-bold text-gray-800">👨‍⚕️ Code 1st Employee Dashboard</h1>
         <div className="space-x-4">
-          <Button variant="outline">Today's Hours: {totalHours.toFixed(2)} hrs</Button>
-          <Button variant="outline">Attendance History</Button>
+          <Button variant="outline">Today's Hours: {totalHours} hrs</Button>
+          <Button onClick={()=>navigate('/employee/dashboard/history')} variant="outline">Attendance History</Button>
           <Button onClick={() => { handleLogout() }} variant="destructive">Logout</Button>
         </div>
       </header>
 
       {/* Clock In / Out Section */}
       <main className="flex justify-center mt-12">
-        <div className="bg-white p-6 rounded-xl shadow-md w-full max-w-md text-center space-y-4">
+        <div className="bg-white p-6 rounded-xl shadow-md w-full max-w-md text-center space-y-4 mx-3">
           <h2 className="text-2xl font-semibold">Today's Attendance</h2>
           <p className="text-gray-600 text-sm">
             {isClockedIn
@@ -114,6 +99,20 @@ export default function EmployeeDashboard() {
                 ? "🔴 Clock Out"
                 : "🟢 Clock In"}
           </Button>
+        </div>
+        <div className="bg-white p-6 rounded-xl shadow-md w-full max-w-md text-center space-y-4 mx-3">
+          <h2 className="text-2xl font-semibold">Apply Leave</h2>
+          <p className="text-gray-600 text-sm">
+            Apply krde aur bhag ja
+          </p>
+          <Button onClick={()=>navigate('/employee/dashboard/applyLeave')}> 🟢 Apply</Button>
+        </div>
+        <div className="bg-white p-6 rounded-xl shadow-md w-full max-w-md text-center space-y-4 gap-3 mx-3">
+          <h2 className="text-2xl font-semibold">Applied Leaves</h2>
+          <p className="text-gray-600 text-sm">
+           Past applied jobs and status
+          </p>
+          <Button onClick={()=>navigate('/employee/dashboard/leaves')}> 🟢 View</Button>
         </div>
       </main>
     </div>

@@ -34,7 +34,7 @@ export const Login = () => {
             if (input.role == 'Admin') {
                 const res = await axios.post(`${ADMIN_API_END_POINT}/login`, input, {
                     headers: {
-                        "Content-Type": "application/json "
+                        "Content-Type": "application/json"
                     },
                     withCredentials: true
                 })
@@ -46,7 +46,7 @@ export const Login = () => {
             } else {
                  const res = await axios.post(`${Employee_API_END_POINT}/login`, input, {
                     headers: {
-                        "Content-Type": "application/json "
+                        "Content-Type": "application/json"
                     },
                     withCredentials: true
                 })
@@ -97,21 +97,21 @@ export const Login = () => {
                                 <input
                                     type="radio"
                                     name="role"
-                                    value="Student"
-                                    checked={input.role === 'Student'}
+                                    value="Admin"
+                                    checked={input.role === 'Admin'}
                                     onChange={changeEventHandler}
                                     className="accent-blue-600 cursor-pointer" />
-                                Employee
+                                Admin
                             </label>
                             <label className="flex items-center gap-2 cursor-pointer">
                                 <input
                                     type="radio"
                                     name="role"
-                                    value="Recruiter"
-                                    checked={input.role === 'Recruiter'}
+                                    value="Employee"
+                                    checked={input.role === 'Employee'}
                                     onChange={changeEventHandler}
                                     className="accent-blue-600 cursor-pointer" />
-                                Admin
+                                Employee
                             </label>
                         </div>
                     </div>

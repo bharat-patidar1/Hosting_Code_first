@@ -68,8 +68,8 @@ export const employeeLogin = async (req, res) => {
             employeeId: employee._id,
             role: "Employee"
         }
-        const token = jwt.sign(tokenData, process.env.SECRET_KEY, { expiresIn: '1h' })
-        return res.status(200).cookie("token", token, { maxAge: 1 * 60 * 60 * 1000, httpsOnly: true, sameSite: 'strict' }).json({
+        const token = jwt.sign(tokenData, process.env.SECRET_KEY, { expiresIn: '1d' })
+        return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpsOnly: true, sameSite: 'strict' }).json({
             success: true,
             message: `Welcome ${employee.name}`
         })

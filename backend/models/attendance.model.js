@@ -13,21 +13,12 @@ const attendanceSchema = new mongoose.Schema({
     sessions: {
         type: [
             {
-                clockIn: {
-                    type: Date,
-                    required: true,
-                },
-                clockOut: {
-                    type: Date,
-                    default: null,
-                },
-                duration: {
-                    type: Number,
-                    default: 0,
-                },
-            }
+                clockIn: { type: Date, required: true },
+                clockOut: { type: Date, default: null },
+                duration: { type: Number, default: 0 },
+            },
         ],
-        default: []
+        default: [],
     },
     totalHoursToday: {
         type: Number,
@@ -37,9 +28,9 @@ const attendanceSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
-},{
-    collection : 'Attendance',
-    timestamps : true 
+}, {
+    collection: 'Attendance',
+    timestamps: true
 })
 
-export const Attendance = mongoose.model('Attendance' , attendanceSchema);
+export const Attendance = mongoose.model('Attendance', attendanceSchema);

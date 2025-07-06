@@ -43,6 +43,7 @@ export default function AddEmployeeModal({ onClose, onSuccess }) {
       if(res.data.success){
         navigate('/admin/dashboard/employees');
         toast.success(res.data.message);
+        onSuccess?.()
         await fetchAllEmployees(dispatch);
       }
     } catch (error) {

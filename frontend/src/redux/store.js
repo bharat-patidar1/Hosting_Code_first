@@ -1,6 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import loadSlice from './loadSlice'
 import employeeSlice from './employeeSlice'
+import  attendanceSlice  from './attendanceSlice'
+import  leaveSlice  from './leaveSlice'
 import {
   persistStore,
   persistReducer,
@@ -21,7 +23,9 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   load: loadSlice,
-  employee: employeeSlice
+  employee: employeeSlice,
+  attendance : attendanceSlice,
+  leave : leaveSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

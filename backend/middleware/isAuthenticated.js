@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export function isAuthenticatedAdmin(req, res, next) {
+export const isAuthenticatedAdmin = (req, res, next) => {
   try {
     const token = req.cookies.token; // ← get from cookie
     if (!token) return res.status(401).json({ message: "Token not found" });
@@ -22,7 +22,7 @@ export function isAuthenticatedAdmin(req, res, next) {
   }
 }
 
-export function isAuthenticatedEmployee(req, res, next) {
+export const isAuthenticatedEmployee = (req, res, next) => {
   try {
     const token = req.cookies.token; // ← get from cookie
     if (!token) return res.status(401).json({ message: "Token not found" });
@@ -32,12 +32,12 @@ export function isAuthenticatedEmployee(req, res, next) {
       return res.status(401).json({ message: "Invalid token" });
     }
     if (decoded.role !== "Employee") {
-      return res.status(403).json({ message: "Access denied. Admin only." });
+      return res.status(403).json({ message: "Access denied. Employee only." });
     }
     
     req.employeeId = decoded.employeeId;
     req.role = decoded.role;
-
+    console.log("Chala")
     next();
   } catch (error) {
     console.log(error)
