@@ -16,7 +16,7 @@ export default function AdminNavbar() {
     const logoutHandler = async ()=>{
       try {
           dispatch(setLoading(true));
-          const res = await axios.get(`${ADMIN_API_END_POINT}/logout`);
+          const res = await axios.get(`${ADMIN_API_END_POINT}/logout`,{withCredentials : true});
           if(res.data.success){
             navigate('/login')
             toast.success(res.data.message)
