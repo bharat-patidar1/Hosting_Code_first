@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
+import EmployeeNavbar from "./EmployeeNavbar";
 
 export default function AttendanceHistory() {
   const [history, setHistory] = useState([]);
@@ -41,6 +42,8 @@ export default function AttendanceHistory() {
   };
 
   return (
+    <div>
+    <EmployeeNavbar/>
     <div className="p-4 max-w-5xl mx-auto space-y-6">
       <h2 className="text-2xl font-bold mb-4 text-center">Attendance History</h2>
       <div className="overflow-x-auto rounded shadow border">
@@ -98,6 +101,7 @@ export default function AttendanceHistory() {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 }

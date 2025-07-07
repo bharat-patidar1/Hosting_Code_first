@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import AdminNavbar from "./AdminNavbar";
 
 
 
@@ -24,6 +25,8 @@ export default function EmployeeOverview() {
   });
 
   return (
+    <div>
+      <AdminNavbar/>
     <div className="p-6">
       <h2 className="text-2xl font-semibold mb-6">Employee Overview</h2>
 
@@ -92,6 +95,7 @@ export default function EmployeeOverview() {
           ))}
         </TableBody>
       </Table>
+    </div>
     </div>
   );
 }

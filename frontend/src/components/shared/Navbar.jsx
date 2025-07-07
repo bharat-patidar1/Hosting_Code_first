@@ -11,15 +11,14 @@ export default function Navbar() {
 
       {/* Center Buttons */}
       <div className="hidden md:flex gap-6 ml-auto mr-12">
-        <Button variant="ghost">Home</Button>
+        {/* <Button variant="ghost">Home</Button>
         <Button variant="ghost">About</Button>
-        <Button variant="ghost">Contact</Button>
+        <Button variant="ghost">Contact</Button> */}
       </div>
 
       {/* Auth Buttons */}
       <div className="flex gap-2">
-        <Button variant="outline"><Link to="/login">Login</Link></Button>
-        <Button><Link to="/signup">Signup</Link></Button>
+        <Button variant="outline"><Link to="/login">Login Page</Link></Button>
       </div>
     </nav>
   );

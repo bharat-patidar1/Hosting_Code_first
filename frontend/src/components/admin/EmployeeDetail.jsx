@@ -134,25 +134,25 @@ console.log("yhi chala" , id)
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Date</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Hours</TableHead>
-                      <TableHead>Check-In</TableHead>
-                      <TableHead>Check-Out</TableHead>
+                      <TableHead className="text-center">Date</TableHead>
+                      <TableHead className="text-center">Status</TableHead>
+                      <TableHead className="text-center">Hours</TableHead>
+                      <TableHead className="text-center">Check-In</TableHead>
+                      <TableHead className="text-center">Check-Out</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {employee?.logs?.map((log, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{log.date}</TableCell>
+                    {/* {employee?.logs?.map((log, index) => ( */}
+                      <TableRow >
+                        <TableCell>08-07-2025</TableCell>
                         <TableCell>
-                          <Badge>{log.status}</Badge>
+                          <Badge>active</Badge>
                         </TableCell>
-                        <TableCell>{log.hours}</TableCell>
-                        <TableCell>{log.checkIn}</TableCell>
-                        <TableCell>{log.checkOut}</TableCell>
+                        <TableCell>4</TableCell>
+                        <TableCell>11:05 am</TableCell>
+                        <TableCell>12:30 pm</TableCell>
                       </TableRow>
-                    ))}
+                    {/* ))} */}
                   </TableBody>
                 </Table>
               </ScrollArea>

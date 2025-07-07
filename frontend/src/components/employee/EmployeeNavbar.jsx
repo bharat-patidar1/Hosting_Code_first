@@ -60,6 +60,14 @@ const EmployeeNavbar = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Button
               variant="ghost"
+              onClick={() => navigate("/employee/dashboard")}
+              className="flex items-center space-x-2"
+            >
+              <SettingsIcon className="h-4 w-4" />
+              <span>Dashboard</span>
+            </Button>
+            <Button
+              variant="ghost"
               onClick={() => navigate("/employee/dashboard/history")}
               className="flex items-center space-x-2"
             >
@@ -73,14 +81,6 @@ const EmployeeNavbar = () => {
             >
               <ClockIcon className="h-4 w-4" />
               <span>Leave</span>
-            </Button>
-            <Button
-              variant="ghost"
-              onClick={() => navigate("/employee/dashboard/payroll")}
-              className="flex items-center space-x-2"
-            >
-              <SettingsIcon className="h-4 w-4" />
-              <span>Payroll</span>
             </Button>
             <Button
               variant="ghost"
