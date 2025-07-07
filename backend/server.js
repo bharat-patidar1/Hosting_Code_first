@@ -7,6 +7,8 @@ import employeeRoute from './routes/employee.route.js';
 import attendanceRoute from './routes/attendance.route.js'
 import leaveRoute from './routes/leave.route.js'
 import cookieParser from "cookie-parser";
+
+
 dotenv.config({});
 dbConnect();
 const app = express();
@@ -32,6 +34,14 @@ app.use('/api/v1/leave', leaveRoute)
 // http://localhost:8000/api/v1/employee/register
 // http://localhost:8000/api/v1/attendance/clockIn
 // http://localhost:8000/api/v1/leave/apply
+
+
+// Handle API routes first
+app.use('/api/v1/admin', adminRoute);
+app.use('/api/v1/employee', employeeRoute);
+app.use('/api/v1/attendance', attendanceRoute);
+app.use('/api/v1/leave', leaveRoute);
+
 
 
 app.listen(PORT, () => {

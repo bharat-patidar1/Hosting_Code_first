@@ -24,7 +24,7 @@ export default function EmployeeDashboard() {
   const handleClockIn = async () => {
     try {
       setLoading(true);
-      const response = await axios.post(`${Attendance_API_END_POINT}/clockIn`);
+      const response = await axios.post(`${Attendance_API_END_POINT}/clockIn`, {withCredentials : true});
       if (response.data.success) {
         dispatch(setIsClockedin(true));
         toast.success("Successfully clocked in!");
@@ -39,7 +39,7 @@ export default function EmployeeDashboard() {
   const handleClockOut = async () => {
     try {
       setLoading(true);
-      const response = await axios.post(`${Attendance_API_END_POINT}/clockOut`);
+      const response = await axios.post(`${Attendance_API_END_POINT}/clockOut`, {withCredentials : true});
       if (response.data.success) {
         dispatch(setIsClockedin(false));
         dispatch(setTotalHours(response.data.attendance.totalHoursToday));
@@ -54,7 +54,7 @@ export default function EmployeeDashboard() {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get(`${Employee_API_END_POINT}/logout`);
+      const response = await axios.get(`${Employee_API_END_POINT}/logout` , {withCredentials : true});
       if (response.data.success) {
         toast.success("Logged out!");
         navigate("/login");

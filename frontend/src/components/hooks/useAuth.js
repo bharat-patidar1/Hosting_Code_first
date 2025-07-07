@@ -11,7 +11,7 @@ export const useAuth = () => {
   // Logout function - Just calls the backend to clear the cookie
   const logout = async () => {
     try {
-      const response = await axios.get(`${Employee_API_END_POINT}/logout`);
+      const response = await axios.get(`${Employee_API_END_POINT}/logout` , {withCredentials : true});
       if (response.data.success) {
         toast.success('Successfully logged out!');
         navigate('/login');

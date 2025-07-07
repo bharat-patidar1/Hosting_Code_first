@@ -29,7 +29,7 @@ export default function EmployeeList() {
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this employee?")) return;
     try {
-      const res = await axios.delete(`${Employee_API_END_POINT}/delete/${id}`)
+      const res = await axios.delete(`${Employee_API_END_POINT}/delete/${id}`,{withCredentials : true})
       if (res.data.success) {
         toast.success(res.data.message);
         await fetchAllEmployees(dispatch);

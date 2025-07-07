@@ -33,7 +33,7 @@ export default function ForgotPassword() {
     setLoading(true);
     try {
       const END_POINT =
-        role === "admin" ? ADMIN_API_END_POINT : Employee_API_END_POINT;
+        role === "admin" ? (ADMIN_API_END_POINT) : (Employee_API_END_POINT)
 
       const res = await axios.put(
         `${END_POINT}/updatePassword`,

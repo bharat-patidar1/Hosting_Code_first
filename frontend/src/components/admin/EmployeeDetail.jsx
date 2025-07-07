@@ -20,35 +20,34 @@ import {useGetEmployee} from "../hooks/useGetEmployee";
 export default function EmployeeDetail() {
   const { _id : id  } = useParams();
   const { employee } = useSelector(state => state.employee);
-console.log("yhi chala" , id)
   // Use custom hook to fetch employee data
   useGetEmployee(id);
 
-  // Handler functions
-  const handleEdit = (employeeId) => {
-    // TODO: Implement edit functionality
-    console.log('Edit clicked for employee:', employeeId);
-  };
+  // // Handler functions
+  // const handleEdit = (employeeId) => {
+  //   // TODO: Implement edit functionality
+  //   console.log('Edit clicked for employee:', employeeId);
+  // };
 
-  const handleSendMessage = (employeeId) => {
-    // TODO: Implement send message functionality
-    console.log('Send message to employee:', employeeId);
-  };
+  // const handleSendMessage = (employeeId) => {
+  //   // TODO: Implement send message functionality
+  //   console.log('Send message to employee:', employeeId);
+  // };
 
-  const handleResetPassword = (employeeId) => {
-    // TODO: Implement reset password functionality
-    console.log('Reset password for employee:', employeeId);
-  };
+  // const handleResetPassword = (employeeId) => {
+  //   // TODO: Implement reset password functionality
+  //   console.log('Reset password for employee:', employeeId);
+  // };
 
-  const handleDeactivate = (employeeId) => {
-    // TODO: Implement deactivate functionality
-    console.log('Deactivate employee:', employeeId);
-  };
+  // const handleDeactivate = (employeeId) => {
+  //   // TODO: Implement deactivate functionality
+  //   console.log('Deactivate employee:', employeeId);
+  // };
 
-  const handleExportReport = (employeeId) => {
-    // TODO: Implement export report functionality
-    console.log('Export report for employee:', employeeId);
-  };
+  // const handleExportReport = (employeeId) => {
+  //   // TODO: Implement export report functionality
+  //   console.log('Export report for employee:', employeeId);
+  // };
  
 
   if (!employee) return <div className="p-6">Loading...</div>;
