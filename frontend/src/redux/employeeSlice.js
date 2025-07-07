@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const employeeSlice = createSlice({
     name : "employee",
     initialState : {
+        employee : null,
         allEmployees : [],
         totalHours : 0
     },
@@ -14,8 +15,11 @@ const employeeSlice = createSlice({
         },
         setTotalHours : (state , action)=>{
             state.totalHours = action.payload
+        },
+        setEmployee : (state , action)=>{
+            state.employee = action.payload
         }
     }
 })
-export const {setAllEmployees , setTotalHours} = employeeSlice.actions;
+export const {setAllEmployees , setTotalHours , setEmployee} = employeeSlice.actions;
 export default employeeSlice.reducer;

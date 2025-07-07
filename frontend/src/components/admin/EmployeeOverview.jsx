@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 
 export default function EmployeeOverview() {
   const navigate = useNavigate();
+  let id ;
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const { allEmployees } = useSelector(store=>store.employee)
@@ -61,7 +62,7 @@ export default function EmployeeOverview() {
         </TableHeader>
         <TableBody>
           {filteredEmployees.map((emp) => (
-            <TableRow key={emp.id}>
+            <TableRow key={emp._id}>
               <TableCell className="font-medium text-center">{emp.name}</TableCell>
               <TableCell className="text-center">{emp.email}</TableCell>
               <TableCell className="text-center">{emp.department}</TableCell>
@@ -78,7 +79,8 @@ export default function EmployeeOverview() {
               <TableCell className="text-center">{emp.lastLogin}</TableCell>
               <TableCell >
                 <div className="flex justify-start gap-2">
-                  <Button onClick={()=>navigate(`/admin/dashboard/employee/${emp.id}`)} size="sm" variant="outline">View</Button>
+                
+                  <Button onClick={()=>navigate(`/admin/dashboard/employee/${emp._id}`)} size="sm" variant="outline">View</Button>
                   {emp.status === "active" ? (
                     <Button size="sm" variant="destructive">Deactivate</Button>
                   ) : (

@@ -7,6 +7,7 @@ import { Trash2 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { leave_API_END_POINT } from "@/utils/constant";
 import { toast } from "sonner";
+import EmployeeNavbar from "../employee/EmployeeNavbar";
 
 
 const MyLeaves = () => {
@@ -77,6 +78,8 @@ const MyLeaves = () => {
     }
 
     return (
+        <>
+        <EmployeeNavbar/>
         <div className="p-4 md:p-8 max-w-4xl mx-auto space-y-4">
             <h2 className="text-3xl font-bold mb-6 text-center">My Leave Applications</h2>
             {leaves.map((leave) => (
@@ -110,6 +113,7 @@ const MyLeaves = () => {
                 </Card>
             ))}
         </div>
+        </>
     );
 };
 

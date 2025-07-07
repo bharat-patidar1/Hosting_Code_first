@@ -1,14 +1,24 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { BellIcon, ClockIcon, CalendarIcon, UserIcon, SettingsIcon, UploadIcon } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+} from "@/components/ui/dropdown-menu";
+import {
+  BellIcon,
+  ClockIcon,
+  CalendarIcon,
+  UserIcon,
+  SettingsIcon,
+  UploadIcon,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { toast } from "sonner";
 
 const EmployeeNavbar = () => {
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -36,9 +46,9 @@ const EmployeeNavbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md fixed w-[73%] z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex w-full justify-between items-center h-16">
+    <nav className="bg-white shadow-md w-full">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           {/* Left - Company Brand */}
           <div className="flex items-center">
             <span className="text-2xl font-bold text-primary">
@@ -46,11 +56,11 @@ const EmployeeNavbar = () => {
             </span>
           </div>
 
-          {/* Center - Quick Actions */}
-          <div className="hidden md:flex items-center flex-1 justify-center space-x-4">
+          {/* Center - Navigation Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
             <Button
               variant="ghost"
-              onClick={() => navigate('/employee/dashboard/history')}
+              onClick={() => navigate("/employee/dashboard/history")}
               className="flex items-center space-x-2"
             >
               <CalendarIcon className="h-4 w-4" />
@@ -58,7 +68,7 @@ const EmployeeNavbar = () => {
             </Button>
             <Button
               variant="ghost"
-              onClick={() => navigate('/employee/dashboard/applyLeave')}
+              onClick={() => navigate("/employee/dashboard/leaves")}
               className="flex items-center space-x-2"
             >
               <ClockIcon className="h-4 w-4" />
@@ -66,7 +76,7 @@ const EmployeeNavbar = () => {
             </Button>
             <Button
               variant="ghost"
-              onClick={() => navigate('/employee/dashboard/payroll')}
+              onClick={() => navigate("/employee/dashboard/payroll")}
               className="flex items-center space-x-2"
             >
               <SettingsIcon className="h-4 w-4" />
@@ -74,89 +84,83 @@ const EmployeeNavbar = () => {
             </Button>
             <Button
               variant="ghost"
-              onClick={() => navigate('/employee/dashboard/notifications')}
+              onClick={() => navigate("/employee/dashboard/notifications")}
               className="flex items-center space-x-2 relative"
             >
               <BellIcon className="h-4 w-4" />
               <span>Notifications</span>
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+              <span className="absolute -top-1 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                3
+              </span>
             </Button>
           </div>
+          <DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Avatar className="cursor-pointer">
+      <AvatarImage src={profileImage || '/default-avatar.png'} />
+      <AvatarFallback>BH</AvatarFallback>
+    </Avatar>
+  </DropdownMenuTrigger>
 
-          {/* Right - Profile Section */}
-          <div className="flex items-center">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Avatar className="cursor-pointer">
-                  <AvatarImage src={profileImage || '/default-avatar.png'} />
-                  <AvatarFallback>BH</AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-80">
-                <div className="flex flex-col space-y-4 p-4">
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold">Bharat Patidar</h3>
-                    <p className="text-sm text-gray-500">Software Engineer</p>
-                  </div>
+  <DropdownMenuContent className="w-[300px] py-4 px-3">
+  <div className="flex flex-col space-y-4">
+              {/* User Info */}
+              <div className="text-center">
+                <h3 className="text-lg font-bold">Bharat Patidar</h3>
+                <p className="text-sm text-gray-500">Software Engineer</p>
+              </div>
 
-                  <div className="space-y-2">
-                    <label className="flex items-center space-x-2">
-                      <UploadIcon className="h-4 w-4" />
-                      <span>Update Profile Photo</span>
-                    </label>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleProfileImageUpload}
-                      className="hidden"
-                      id="profile-image"
-                    />
-                    <label htmlFor="profile-image" className="cursor-pointer">
-                      <Button variant="outline" size="sm">
-                        Choose Photo
-                      </Button>
-                    </label>
-                  </div>
+              {/* Profile Photo Upload */}
+              <div className="space-y-2">
+                <p className="flex items-center gap-2 font-medium">
+                  <UploadIcon className="w-4 h-4" />
+                  Profile Photo
+                </p>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleProfileImageUpload}
+                  className="w-full text-sm file:px-4 file:py-1.5 file:rounded-md file:border-0 file:bg-muted file:text-sm file:font-medium file:text-black"
+                />
+              </div>
 
-                  <div className="space-y-2">
-                    <label className="flex items-center space-x-2">
-                      <UserIcon className="h-4 w-4" />
-                      <span>Update Profile</span>
-                    </label>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => navigate('/employee/dashboard/profile')}
-                    >
-                      Edit Profile
-                    </Button>
-                  </div>
+              {/* Profile Update */}
+              <div className="space-y-1">
+                <Button
+                  variant="outline"
+                  className="w-full flex justify-start gap-2"
+                  onClick={() => navigate('/employee/dashboard/profile')}
+                >
+                  <UserIcon className="w-4 h-4" />
+                  Edit Profile
+                </Button>
+              </div>
 
-                  <div className="space-y-2">
-                    <label className="flex items-center space-x-2">
-                      <SettingsIcon className="h-4 w-4" />
-                      <span>Skills & Bio</span>
-                    </label>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => navigate('/employee/dashboard/skills')}
-                    >
-                      Edit Skills
-                    </Button>
-                  </div>
+              {/* Skills Update */}
+              <div className="space-y-1">
+                <Button
+                  variant="outline"
+                  className="w-full flex justify-start gap-2"
+                  onClick={() => navigate('/employee/dashboard/skills')}
+                >
+                  <SettingsIcon className="w-4 h-4" />
+                  Edit Skills
+                </Button>
+              </div>
 
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </Button>
-                </div>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+              {/* Logout */}
+              <Button
+                variant="destructive"
+                className="w-full"
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+            </div>
+  </DropdownMenuContent>
+</DropdownMenu>
+          
+
         </div>
       </div>
     </nav>

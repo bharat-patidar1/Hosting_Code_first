@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import { useGetAllEmployees } from "../hooks/useGetAllEmployees";
 import { fetchAllEmployees } from "@/api/fetchAllEmployee";
+import AdminNavbar from "./AdminNavbar";
 // import EditEmployeeModal from "./EditEmployeeModal"; // optional
 
 export default function EmployeeList() {
@@ -39,6 +40,8 @@ export default function EmployeeList() {
   };
 
   return (
+    <div>
+      <AdminNavbar/>
     <div className="p-6 space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-semibold">Manage Employees</h1>
@@ -103,6 +106,7 @@ export default function EmployeeList() {
           onSuccess={fetchEmployees}
         />
       )} */}
+    </div>
     </div>
   );
 }

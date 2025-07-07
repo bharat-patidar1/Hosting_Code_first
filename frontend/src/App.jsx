@@ -14,6 +14,7 @@ import MyLeaves from './components/leave/MyLeaves'
 import AdminWorkHours from './components/admin/AdminWorkHours'
 import AdminAttendanceSummary from './components/admin/AdminAttendanceSummary'
 import EmployeeLeaves from './components/admin/EmployeeLeaves'
+import bgImage from './images/applyleave.jpg'
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDashboard/>}></Route>
           {/* employee route control by admin */}
           <Route path="/admin/dashboard/overview" element={<EmployeeOverview/>}></Route>
-          <Route path="/admin/dashboard/employee/:id" element={<EmployeeDetail/>}></Route>
+          <Route path="/admin/dashboard/employee/:_id" element={<EmployeeDetail/>}></Route>
           <Route path="/admin/dashboard/employees" element={<EmployeeList/>}></Route>
           <Route path="/admin/dashboard/workhour" element={<AdminWorkHours/>}></Route>
           <Route path="/admin/dashboard/attendanceSummary" element={<AdminAttendanceSummary/>}></Route>
@@ -37,7 +38,7 @@ function App() {
           <Route path="/employee/forgetPassword" element={<ForgotPassword/>}></Route>
           <Route path="/employee/dashboard/history" element={<AttendanceHistory/>}></Route>
           {/* leave */}
-          <Route path="/employee/dashboard/applyLeave" element={<ApplyLeave/>}></Route>
+          <Route path="/employee/dashboard/applyLeavePage" element={<ApplyLeave/>}></Route>
           <Route path="/employee/dashboard/leaves" element={<MyLeaves/>}></Route>
         </Routes>
       </BrowserRouter>

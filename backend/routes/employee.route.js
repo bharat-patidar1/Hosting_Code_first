@@ -1,5 +1,5 @@
 import express from 'express'
-import { deleteEmployeeById, employeeLogin, employeeLogout, employeeRegister, getAllEmployees, getEmployeeById, updatePassword } from '../controllers/employee.controller.js';
+import { deleteEmployeeById, employeeLogin, employeeLogout, employeeRegister, getAllEmployees, getEmployeeDetail, updatePassword } from '../controllers/employee.controller.js';
 import { isAuthenticatedAdmin } from '../middleware/isAuthenticated.js'
 const router = express.Router();
 
@@ -9,8 +9,6 @@ router.route('/logout').get(employeeLogout);
 router.route('/updatePassword').put(updatePassword);
 router.route('/delete/:id').delete(deleteEmployeeById);
 router.route('/get').get(isAuthenticatedAdmin , getAllEmployees);
-router.route('/get/:id').get(getEmployeeById);
-
-
+router.get('/get/:id', isAuthenticatedAdmin, getEmployeeDetail);
 
 export default router;

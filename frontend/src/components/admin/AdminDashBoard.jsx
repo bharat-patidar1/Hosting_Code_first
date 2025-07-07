@@ -4,15 +4,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import AdminNavbar from "./AdminNavbar";
 import { useNavigate } from "react-router-dom";
 
-
 export default function AdminDashboard() {
 
   const navigate = useNavigate();
 
+
   return (
     <>
-      <AdminNavbar />
-      <div className="p-6 space-y-3">
+      <AdminNavbar/>
+      <div className="p-6 space-y-3 max-w-screen-xl mx-auto">
 
         <h3 className="text-black"></h3>
 

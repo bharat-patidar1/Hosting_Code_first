@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchAllEmployees } from "@/api/fetchAllEmployee";
+import { fetchEmployee } from "@/api/fetchEmployee";
 
-export const useGetAllEmployees = () => {
+export const useGetEmployee = (id) => {
   const dispatch = useDispatch();
+  console.log(id)
 
   useEffect(() => {
-    fetchAllEmployees(dispatch);
+    fetchEmployee(dispatch , id);
   }, [dispatch]);
 };

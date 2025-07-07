@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ADMIN_API_END_POINT } from "@/utils/constant";
 import moment from "moment";
+import AdminNavbar from "./AdminNavbar";
 
 const AdminAttendanceSummary = () => {
   const [view, setView] = useState("daily");
@@ -91,6 +92,8 @@ const AdminAttendanceSummary = () => {
       ));
 
   return (
+    <div>
+      <AdminNavbar/>
     <div className="p-6 max-w-6xl mx-auto space-y-6">
       <Card>
         <CardHeader className="flex justify-between items-center">
@@ -145,6 +148,7 @@ const AdminAttendanceSummary = () => {
       )}
 
       {!loading && view === "weekly" && renderWeeklyCards()}
+    </div>
     </div>
   );
 };

@@ -61,7 +61,10 @@ const ApplyLeave = ({ onClose }) => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-xl mx-auto">
+    <div
+      className="bg-cover bg-center bg-no-repeat p-8 rounded-2xl shadow-lg w-full max-w-xl mx-auto"
+    >
+
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-3xl font-bold text-gray-900">Apply for Leave</h2>
         <Button variant="ghost" onClick={onClose}>
