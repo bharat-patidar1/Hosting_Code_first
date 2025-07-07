@@ -20,7 +20,7 @@ app.use(express.json()); // to access json data
 app.use(express.urlencoded({ extended: true })); //to access form data
 app.use(cookieParser()); // 👈 This line is REQUIRED to access req.cookies
 app.use(cors({
-    origin: "sudo delete web service Hosting_Code", // your frontend URL
+    origin: "https://code-1st-healthcare-frontend.onrender.com", // your frontend URL
     credentials: true               // ✅ allow sending cookies
 }));
 
