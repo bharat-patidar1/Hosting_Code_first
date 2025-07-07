@@ -37,7 +37,6 @@ export const isAuthenticatedEmployee = (req, res, next) => {
     
     req.employeeId = decoded.employeeId;
     req.role = decoded.role;
-    console.log("Chala")
     next();
   } catch (error) {
     console.log(error)
