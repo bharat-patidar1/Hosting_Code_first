@@ -14,7 +14,6 @@ import MyLeaves from './components/leave/MyLeaves'
 import AdminWorkHours from './components/admin/AdminWorkHours'
 import AdminAttendanceSummary from './components/admin/AdminAttendanceSummary'
 import EmployeeLeaves from './components/admin/EmployeeLeaves'
-import bgImage from './images/applyleave.jpg'
 
 
 function App() {
